@@ -1,31 +1,51 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar app flat dark>
+      <v-toolbar-title class="headline text-uppercase">
+        <span>RESTO</span>
+        <span class="font-weight-light">PICKER</span>
+      </v-toolbar-title>
+      <!-- <v-spacer></v-spacer>
+      <v-btn
+        text
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank">
+        <span class="mr-2">Latest Release</span>
+      </v-btn> -->
+    </v-app-bar>
+    <v-content>
+      <Criteria/>
+      <HelloWorld/>
+    </v-content>
+    <v-footer>
+      <div class="flex-grow-1"></div>
+      <div>Akshay Suresh &copy; {{ new Date().getFullYear() }}</div>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+<script>
+import HelloWorld from '@/components/HelloWorld'
+import Criteria from '@/components/Criteria'
+import Vuex from 'vuex'
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+export default {
+  name: 'App',
+  components: {
+    HelloWorld,
+    Criteria
+  },
+  created () {
+    this.setCategories()
+    this.setCities()
+    this.setDefaultCity()
+  },
+  methods: {
+    ...Vuex.mapActions([
+      'setCategories',
+      'setCities',
+      'setDefaultCity'
+    ])
+  }
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
