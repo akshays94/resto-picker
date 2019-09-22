@@ -6,6 +6,6 @@ const ZOMATO_HTTP = axios.create({
   baseURL: ZOMATO_API
 })
 
-ZOMATO_HTTP.defaults.headers.common['user-key'] = `2faa4f94ed5b5b463891af9b330bdb9d`
+ZOMATO_HTTP.defaults.headers.common['user-key'] = process.env.VUE_APP_APIKEY
 
 export { ZOMATO_HTTP }
